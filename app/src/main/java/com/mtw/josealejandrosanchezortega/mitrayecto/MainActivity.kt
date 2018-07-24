@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
 
         rvLayoutManager = LinearLayoutManager(this)
 
-        var myDataset = arrayOf("HOLA 0", "HOLA 1")
+        var myDataset = arrayOf("HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4")
 
         viewAdapter = VehicleListAdapter(myDataset)
 
