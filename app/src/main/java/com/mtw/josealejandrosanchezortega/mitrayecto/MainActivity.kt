@@ -13,10 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvVehiclesList: RecyclerView
 
     // DECLARAMOS EL ADAPTER DE DATOS PARA EL RECYCLERVIEW
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
-
-    // DECLARAMOS EL LAYOUT MANAGER QUE SE USARÁ DENTRO DEL RECYCLERVIEW
-    private lateinit var rvLayoutManager: RecyclerView.LayoutManager
+    private lateinit var myViewAdapter: RecyclerView.Adapter<*>
 
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -46,14 +43,13 @@ class MainActivity : AppCompatActivity() {
         // MI CONTENIDO
         // BASADO EN LA REFERENCIA: https://developer.android.com/guide/topics/ui/layout/recyclerview
 
-        rvLayoutManager = LinearLayoutManager(this)
+        var myDataset2 : ArrayList<Vehicle> = ArrayList()
+        myDataset2.add(Vehicle("NP200", "vehículo asignado a la coordinación de redes"))
+        myDataset2.add(Vehicle("hilux", "vehículo asignado al Departamento de Sistemas de Información"))
 
-        var myDataset = arrayOf("HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
-                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
-                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
-                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4")
 
-        viewAdapter = VehicleListAdapter(myDataset)
+        // myViewAdapter = VehicleListAdapter(myDataset)
+        myViewAdapter = VehicleListAdapter(myDataset2)
 
         // SE CREA EL WIDGET DE RECYCLERVIEW Y SE ESTABLECEN PARÁMETROS DEL MISMO CON apply
         rvVehiclesList = findViewById<RecyclerView>(R.id.rvVehiclesList).apply {
@@ -61,10 +57,10 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
 
             // SE ESTABLECE EL LAYOUTMANAGER QUE USARÁ EL RECYCLERVIEW DENTRO DE ÉL
-            layoutManager = rvLayoutManager
+            layoutManager = LinearLayoutManager(this@MainActivity)
 
-            // SE ESTABLE EL viewAdapter DEL RECYCLERVIEW
-            adapter = viewAdapter
+            // SE ESTABLE EL ViewAdapter DEL RECYCLERVIEW
+            adapter = myViewAdapter
         }
     }
 }
