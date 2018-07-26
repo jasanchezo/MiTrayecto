@@ -44,22 +44,26 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         // MI CONTENIDO
+        // BASADO EN LA REFERENCIA: https://developer.android.com/guide/topics/ui/layout/recyclerview
 
         rvLayoutManager = LinearLayoutManager(this)
 
-        var myDataset = arrayOf("HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4")
+        var myDataset = arrayOf("HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
+                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
+                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4",
+                "HOLA 0", "HOLA 1", "HOLA 3", "HOLA 4")
 
         viewAdapter = VehicleListAdapter(myDataset)
 
-
+        // SE CREA EL WIDGET DE RECYCLERVIEW Y SE ESTABLECEN PARÁMETROS DEL MISMO CON apply
         rvVehiclesList = findViewById<RecyclerView>(R.id.rvVehiclesList).apply {
             // FIJAMOS EL RECYCLERVIEW YA QUE LAS TARJETAS SERÁN DEL MISMO TAMAÑO
             setHasFixedSize(true)
 
-            // use a linear layout manager
+            // SE ESTABLECE EL LAYOUTMANAGER QUE USARÁ EL RECYCLERVIEW DENTRO DE ÉL
             layoutManager = rvLayoutManager
 
-            // specify an viewAdapter (see also next example)
+            // SE ESTABLE EL viewAdapter DEL RECYCLERVIEW
             adapter = viewAdapter
         }
     }

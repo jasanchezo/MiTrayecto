@@ -14,21 +14,18 @@ class VehicleListAdapter(private val myDataset: Array<String>) : RecyclerView.Ad
     // Each data item is just a string in this case that is shown in a TextView.
     //// class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
     class MyViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+        // MÉTODO PARA ASOCIAR DATOS CON UN view QUE PERMITA MOSTRAR DICHO DATO
         fun bind(text : String) {
             view.tvVehicle.text = text
         }
     }
 
-
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VehicleListAdapter.MyViewHolder {
-        // create a new view
-        /* val textView = LayoutInflater.from(parent.context).inflate(R.layout.vehicle_list_item, parent, false) as TextView
-        // set the view's size, margins, paddings and layout parameters
-
-        return MyViewHolder(textView) */
-
+        // SE GENERA UNA INSTANCIA DE UN inflater PARA RENDERIZAR EL activity CON SUS view's
         val layoutInflater = LayoutInflater.from(parent.context)
+
+        // SE REGRESA UNA INSTANCIA DEL CONTENEDOR CON TODAS LAS views INSTANCIADAS HACIENDO REFERENCIA AL activity
         return MyViewHolder(layoutInflater.inflate(R.layout.vehicle_list_item, parent,false))
     }
 
