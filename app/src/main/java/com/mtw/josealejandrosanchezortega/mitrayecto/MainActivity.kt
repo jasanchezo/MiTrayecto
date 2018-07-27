@@ -1,5 +1,6 @@
 package com.mtw.josealejandrosanchezortega.mitrayecto
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.navigation_dashboard -> {
                 message.setText(R.string.journey)
+
+                // CÓDIGO PARA LANZAR EL Activity DEL MAPS
+                val intent = Intent(this, JourneyActivity::class.java)
+                startActivity(intent)
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
