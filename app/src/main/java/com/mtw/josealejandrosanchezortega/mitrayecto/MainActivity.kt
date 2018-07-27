@@ -43,13 +43,11 @@ class MainActivity : AppCompatActivity() {
         // MI CONTENIDO
         // BASADO EN LA REFERENCIA: https://developer.android.com/guide/topics/ui/layout/recyclerview
 
-        var myDataset2 : ArrayList<Vehicle> = ArrayList()
-        myDataset2.add(Vehicle("NP200", "vehículo asignado a la coordinación de redes"))
-        myDataset2.add(Vehicle("hilux", "vehículo asignado al Departamento de Sistemas de Información"))
-
+        var myDataset : ArrayList<Vehicle> = ArrayList()
+        populateData(myDataset)
 
         // myViewAdapter = VehicleListAdapter(myDataset)
-        myViewAdapter = VehicleListAdapter(myDataset2)
+        myViewAdapter = VehicleListAdapter(myDataset)
 
         // SE CREA EL WIDGET DE RECYCLERVIEW Y SE ESTABLECEN PARÁMETROS DEL MISMO CON apply
         rvVehiclesList = findViewById<RecyclerView>(R.id.rvVehiclesList).apply {
@@ -62,5 +60,11 @@ class MainActivity : AppCompatActivity() {
             // SE ESTABLE EL ViewAdapter DEL RECYCLERVIEW
             adapter = myViewAdapter
         }
+    }
+
+    private fun populateData(myDataset: ArrayList<Vehicle>) {
+        myDataset.add(Vehicle("NP200", "vehículo asignado a la coordinación de redes"))
+        myDataset.add(Vehicle("hilux", "vehículo asignado al Departamento de Sistemas de Información"))
+        myDataset.add(Vehicle("Ford 6", "vehículo asignado a la coordinación de conectividad"))
     }
 }
