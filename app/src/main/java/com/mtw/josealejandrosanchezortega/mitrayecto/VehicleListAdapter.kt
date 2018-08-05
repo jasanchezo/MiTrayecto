@@ -14,7 +14,7 @@ class VehicleListAdapter(private val myDataset: ArrayList<Vehicle>) : RecyclerVi
     class MyViewHolder(val mainView: View) : RecyclerView.ViewHolder(mainView) {
         // MÉTODO PARA ASOCIAR DATOS CON UN view QUE PERMITA MOSTRAR DICHO DATO
         fun bind(vehicle : Vehicle) {
-            mainView.tvVehicleSortname.text = vehicle.sortname
+            mainView.tvVehicleSmallName.text = vehicle.smallname
             mainView.tvVehicleDescription.text = vehicle.description
         }
     }
