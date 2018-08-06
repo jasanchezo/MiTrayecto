@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
     // private lateinit var myViewAdapter: RecyclerView.Adapter<*>
     private lateinit var myViewAdapter: VehicleListAdapter
 
+    private var disposable: Disposable? = null
+
+    private val vehiclesApiService by lazy {
+        VehiclesApiService.create()
+    }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -77,38 +82,27 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private var disposable: Disposable? = null
-
-    private val vehiclesApiService by lazy {
-        VehiclesApiService.create()
-    }
-
+    /**
+     * METODO PARA SEMBRAR LA INFORMACIÓN EN LOS CARDVIEW DEL RECYCLERVIEW A PARTIR DE LA INFORMACIÓN
+     * DE UN WS REST
+     */
     private fun populateData(myDataset: ArrayList<Vehicle>) {
         /*myDataset.add(Vehicle("NP200", "vehículo asignado a la coordinación de redes"))
         myDataset.add(Vehicle("hilux", "vehículo asignado al Departamento de Sistemas de Información"))
         myDataset.add(Vehicle("Ford 6", "vehículo asignado a la coordinación de conectividad"))*/
 
-
         disposable = vehiclesApiService.getVehicles()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { // result -> txt_search_result.text = "${result.query.searchinfo.totalhits} result found" },
+                        {
                             result ->
                                 Log.i("MITRAYECTAPP", "CORRECTO: " + result.size)
-                                // myDataset.add(Vehicle("NP200", "vehículo asignado a la coordinación de redes"))
-                                // myDataset.add(Vehicle(result[i].smallname, result[i].description))
-                                Log.i("ITEMS", result[1].smallname)
-                            Log.i("ITEMS", result[1].description)
-                            /* Log.i("ITEMS", result[1].smallname)
-                            Log.i("ITEMS", result[2].smallname) */
-                            for (i in result.indices) {
-                                myDataset.add(Vehicle(result[i].smallname, result[i].description))
-                            }
-
-
-
-                                // Toast.makeText(this, "ITEMS: " + result.items.size, Toast.LENGTH_SHORT).show()
+                                /* Log.i("ITEMS", result[1].smallname)
+                                Log.i("ITEMS", result[1].description) */
+                                for (i in result.indices) {
+                                    myDataset.add(Vehicle(result[i].smallname, result[i].description))
+                                }
                         }
                         ,
                         {
@@ -124,44 +118,4 @@ class MainActivity : AppCompatActivity() {
         disposable?.dispose()
     }
 
-    // SE INSTANCÍA HASTA QUE SE USA Y SÓLO SUCEDE UNA VEZ. SI SE VUELVE A USAR SE REGRESA EL OBJETO
-    // YA INSTANCIADO
-    /*private val vehiclesApiService by lazy {
-        VehiclesApiService.create()
-    }
-
-    private fun populateDateFromWS() {
-        // EJECUTAR LA LLAMADA A LA API. ESPECIFFICAMENTE EJECUTAR EL MÉTODO SearchBooks
-        disposable = vehiclesApiService.getVehicles()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    result ->
-                    // MOSTRAR LA LISTA DE LIBROS REGRESADOS EN LA LLAMADA
-                    myViewAdapter.setItemsList(result.items)
-                    // MOSTRAR MENSAJE DE DIALOGO
-                    Toast.makeText(this@MainActivity, "búsqueda realizada", Toast.LENGTH_LONG).show()
-                }, {
-                    error ->
-                    showAlert("Error", error.message!!)
-                })
-    }
-
-    private var disposable : Disposable? = null
-
-    // SE INSTANCÍA HASTA QUE SE USA Y SÓLO SUCEDE UNA VEZ. SI SE VUELVE A USAR SE REGRESA EL OBJETO
-    // YA INSTANCIADO
-    private val booksApiService by lazy {
-        // BooksApiService.create()
-        VehiclesApiService.create()
-    }
-
-    // METODO PARA CREAR UN DIALOGO DE TIPO MESSAGEBOX
-    private fun showAlert(title : String, message : String) {
-        AlertDialog.Builder(this@MainActivity)
-                .setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("Aceptar", null)
-                .create().show()
-    }*/
 }

@@ -22,9 +22,9 @@
         android:text="TextView" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/tvbtnGetGeoLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Obtener georeferenciación" />
 
 </LinearLayout>
