@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Journey</string>
+    <string name="favorites">Favorites</string>
+    <string name="journey">Journey</string>
+    <string name="issue_report">Issues Report</string>
+    <string name="title_activity_journey">My Journey</string>
+</resources>
