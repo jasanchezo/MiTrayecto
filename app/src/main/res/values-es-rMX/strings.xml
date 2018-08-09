@@ -3,6 +3,6 @@
     <string name="app_name">Mi Trayecto</string>
     <string name="favorites">Favoritos</string>
     <string name="journey">Trayecto</string>
-    <string name="issue_report">Reporte</string>
+    <string name="issue_report">Reportes</string>
     <string name="title_activity_journey">Mi trayecto</string>
 </resources>
